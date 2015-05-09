@@ -52,7 +52,7 @@ MStatus LSystemCmd::doIt( const MArgList& args )
 		FramePosy.set(SimODE::GetFramePos_Body0y());
 		MString FramePosz;
 		FramePosz.set(SimODE::GetFramePos_Body0z());
-		MString MoveKeyCommand = ("select -r frame; move " + FramePosx +" "+FramePosy +" "+FramePosz +";");
+		MString MoveKeyCommand = ("select -r frame; move " + FramePosx +" "+FramePosz +" "+FramePosy +";");
 		MGlobal::executeCommand(MoveKeyCommand);
 		MGlobal::executeCommand("setKeyframe;");
 		cout<<MoveKeyCommand.asChar()<<endl;

@@ -1,0 +1,52 @@
+float $top_pos[3];
+float $bot_pos[3];
+
+global proc set_success(){
+   if(`window -ex "win_set_success"`)
+          deleteUI "win_set_success";
+   window -t "success"
+           -w 80 -h 120 
+           "win_set_success";
+   columnLayout -adj 1 layout1;
+   text -l "set successfully";	   
+   button -label "confirm" -command" deleteUI \"win_set_success\"";	
+   showWindow "win_set_success" ;  
+}
+global proc bind_window(){
+
+   if(`window -ex "win_bind"`)
+          deleteUI "win_bind";
+   window -t "bind your bike"
+           -w 100 -h 180 
+           "win_bind";
+   columnLayout  -adj 1 layout1;//-adj 1
+      text -l "please follow the instructions bellow:";
+	  text -l "1.group part of the the bike";
+	  text -l "2.select the part on your bike model corresponding to the button and then click it";
+	  button -label "front wheel" -command "string $selection[] = `ls -selection`;rename $selection[0] \"front_wheel\" " ;
+      button -label "back wheel" -command " string $selection[] = `ls -selection`;rename $selection[0] \"back_wheel\"" ;
+      button -label "handle" -command "string $selection[] = `ls -selection`;rename $selection[0] \"handle\" " ;
+	  button -label "frame" -command "string $selection[] = `ls -selection`;rename $selection[0] \"frame\"  " ;
+      button -label "confirm" -command "bin();";
+
+ 
+      showWindow "win_bind";  
+	
+   }  
+global proc bin(){
+	select front_wheel handle;
+	doGroup 0 1 1;
+	rename "handle_wheel";
+    select front_wheel back_wheel handle frame ;
+    doGroup 0 1 1;
+    rename "bike";
+    select bike;
+   // rigidBody -active -name "rigidBody_bike" -m 1 -dp 0 -sf 0.2 -df 0.2 -b 0.6 -l 0 -tf 200 -iv 0 0 0 -iav 0 0 0 -c 0 -pc 0 -i 0 0 0 -imp 0 0 0 -si 0 0 0 -sio none
+} 
+global proc  GetAxis(){
+    $top_pos[3] = `xform -worldSpace -query -translation top_ring`;
+    $bot_pos[3] = `xform -worldSpace -query -translation bottom_ring`;
+}
+
+   bind_window();
+   

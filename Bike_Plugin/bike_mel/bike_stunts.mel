@@ -1,0 +1,65 @@
+ global proc stunts (){
+	if(`window -ex "win_stunts"`)
+          deleteUI "win_stunts";
+   window -t "choose your stunts"
+           -w 600 -h 350 
+           "win_stunts";
+   
+   columnLayout -adj 1 layout1;
+   	  rowLayout -numberOfColumns 2;
+	  //floatFieldGrp -label "arrive pointx" ;
+	  //floatFieldGrp -label "arrive pointy" ;
+	  //floatFieldGrp -label "arrive pointz" ;
+       radioCollection;
+	   radioButton -label"go to specific point";
+	   radioButton -label "going over curves";
+	   setParent..;
+	   floatFieldGrp -label "arrive pointx" ;
+	   floatFieldGrp -label "arrive pointy" ;
+	   floatFieldGrp -label "arrive pointz" ;
+      text -l "Create stairs:";
+	  button -label "Create stairs" -command " stairs(); " ;
+      //button -label "stunts" -command""
+	showWindow "win_stunts"; 
+	
+}
+
+global proc stairs(){
+	if(`window -ex "win_stunts"`)
+          deleteUI "win_stunts";
+    window -t "choose your stunts"
+           -w 400 -h 350 
+           "win_stunts";
+	columnLayout;
+	text -l "stairs attribute:";
+	$step_number=`intSliderGrp -l "Step number" -min 1 -f true`;
+	rowLayout -numberOfColumns 3; 
+	$step_length=`floatSliderGrp -l "length" -min 0 -f true`;
+	$step_width=`floatSliderGrp -l "width" -min 0 -f true`;
+	$step_height=`floatSliderGrp -l "height" -min 0 -f true`;
+	setParent..;
+	//("callL" + " "+  $grammar + " "+ $iterationsld + " " + $stepsld + " " + $anglesld+" ; " )
+	button -l "confirm" -command ("create_stair " + " "+ $step_number + " "+ $step_length + " " + $step_width + " "+ $step_height +";");
+	showWindow"win_stunts";
+}
+global proc create_stair(string $step_number,string $step_length, string $step_width,string $step_height){
+	int $number = `intSliderGrp -q -value $step_number`;
+	float $length = `floatSliderGrp -q -value $step_length`;
+	float $width = `floatSliderGrp -q -value $step_width`;
+	float $height = `floatSliderGrp -q -value $step_height`;
+	$locationx=0.0;
+	$locationy=0.0;
+	$locationz=0.0;
+    $i = 0;
+    while($i < $number){
+            polyCube; 
+			scale $length $height $width; 
+			$x = $locationx; 
+			$y = $locationy + ($i * $height); 
+			$z = $locationz +($i * $width);
+            move $x $y $z; 
+			$i++; 
+			}
+
+ }
+stunts ();

@@ -1,0 +1,24 @@
+global proc CallBind(){
+   source "C:/Users/lisa/Desktop/660/bike_mel/bike_bind.mel";
+}
+global proc CallSet(){
+	source "C:/Users/lisa/Desktop/660/bike_mel/bike_arttribute.mel";
+}
+global proc CallStunts(){
+	source "C:/Users/lisa/Desktop/660/bike_mel/bike_stunts.mel";
+}
+
+global proc MyMenu(){
+    global string $myMenuMain;
+        if (`menu -exists $myMenuMain`) 
+           deleteUI $myMenuMain;
+    string $name = "Bicycle Stunts";
+    
+    global string $gMainWindow;
+    $myMenuMain = `menu -p $gMainWindow -tearOff true -l $name`;
+    
+	menuItem -p $myMenuMain -l "bind your bicycle" -c "CallBind()";                                                 
+	menuItem -p $myMenuMain -l "set your bike" -c "CallSet()";
+	menuItem -p $myMenuMain -l "choose your stunts" -c"CallStunts()";
+}
+MyMenu();

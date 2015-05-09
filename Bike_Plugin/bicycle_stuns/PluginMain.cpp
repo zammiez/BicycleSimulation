@@ -25,19 +25,13 @@ MStatus initializePlugin( MObject obj )
     MFnPlugin plugin( obj, "MyPlugin", "1.0", "Any");
 
 	status = plugin.registerCommand( "LSystemCmd", LSystemCmd::creator, LSystemCmd::newSyntax );
-	//****************		2.2c MEL GUI		********************//
-	MGlobal::executeCommand("C:\\Users\\zammie\\Downloads\\HW2_ZiweiZong\\HW2_ZiweiZong\\HW2_Ziwei\\GUIMel.mel\";",true);
-	status = plugin.registerUI("createLSystemUI","deleteLSystemUI");
+	
+	MGlobal::executeCommand("source \"" + plugin.loadPath() + "/bike_mel/menu.mel\"");
 	if (!status) {
         status.perror("registerCommand");
         return status;
     }
-	//****************		2.3a Create Node	********************//
-	status = plugin.registerNode("LSystemNode", LSystemNode::id, LSystemNode::creator, LSystemNode::initialize);
-	if (!status) {
-            status.perror("registerNode");
-            return status;
-    }
+	
     return status;
 }
 
@@ -46,7 +40,7 @@ MStatus uninitializePlugin( MObject obj)
 
     MStatus   status = MStatus::kSuccess;
     MFnPlugin plugin( obj );
-	//status = plugin.registerUI("createLSystemUI", "deleteLSystemUI");
+
 	status = plugin.deregisterCommand( "LSystemCmd");
 	if (!status) {
 	    status.perror("deregisterCommand");

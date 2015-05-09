@@ -1,0 +1,20 @@
+global proc setAttr_window(){
+
+   if(`window -ex "win_setAttr"`)
+          deleteUI "win_setAttr";
+   window -t "set your bike"
+           -w 420 -h 250 
+           "win_setAttr";
+
+   columnLayout -adj 1 layout1;
+      text -l "please set the attribute of your bike or choose the default bike";
+  
+	  floatSliderGrp -label "cartton effect" -value 0 -field true -minValue 0 -maxValue 10;
+	  rowLayout -numberOfColumns 3;
+	  floatFieldGrp -label "arrive pointx" ;
+	  floatFieldGrp -label "arrive pointy" ;
+	  floatFieldGrp -label "arrive pointz" ;
+
+      showWindow "win_setAttr";  
+   }
+setAttr_window();

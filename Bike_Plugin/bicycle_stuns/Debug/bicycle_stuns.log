@@ -1,25 +1,11 @@
-﻿生成启动时间为 2015/5/9 14:43:25。
+﻿生成启动时间为 2015/5/9 17:32:08。
      1>项目“C:\Users\lisa\Desktop\BicycleSimulation\Bike_Plugin\bicycle_stuns\bicycle_stuns.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
-         正在创建“Debug\bicycle_stuns.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+         正在对“Debug\bicycle_stuns.unsuccessfulbuild”执行 Touch 任务。
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /I. /I"C:\Program Files\Autodesk\Maya2015\include" /I..\..\Yah_Finally\build\_vs2010\odedll /I..\..\Yah_Finally\include /I..\..\Yah_Finally\build\_vs2010\odedll /I..\..\Yah_Finally\ode\src /Zi /nologo /W3 /WX- /Od /D _MT /D _USE_MATH_DEFINES /D dIDEDOUBLE /D CCD_IDEDOUBLE /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D ODEDLL_EXPORTS /D CCD_IDEDOUBLE /D dIDEDOUBLE /D _DEBUG /D WIN32 /D _WINDOWS /D _USRDLL /D NT_PLUGIN /D _HAS_ITERATOR_DEBUGGING=0 /D _SECURE_SCL=0 /D _SECURE_SCL_THROWS=0 /D _SECURE_SCL_DEPRECATE=0 /D _CRT_SECURE_NO_DEPRECATE /D TBB_USE_DEBUG=0 /D __TBB_LIB_NAME=tbb.lib /D REQUIRE_IOSTREAM /D AW_NEW_IOSTREAMS /D Bits64_ /D _WINDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"Debug\\" /Fd"Debug\bicycle_stuns.pdb" /Gd /TP /errorReport:prompt cylinder.cpp LSystem.cpp LSystemCmd.cpp LSystemNode.cpp PluginMain.cpp vec.cpp
-         vec.cpp
-         PluginMain.cpp
-         LSystemNode.cpp
-     1>LSystemNode.cpp(93): warning C4244: “参数”: 从“const double”转换到“float”，可能丢失数据
-     1>LSystemNode.cpp(94): warning C4244: “参数”: 从“const double”转换到“float”，可能丢失数据
-         LSystemCmd.cpp
-         LSystem.cpp
-     1>LSystem.cpp(51): warning C4267: “初始化”: 从“size_t”转换到“unsigned int”，可能丢失数据
-         cylinder.cpp
-     1>cylinder.cpp(47): warning C4018: “<”: 有符号/无符号不匹配
-     1>cylinder.cpp(69): warning C4018: “<”: 有符号/无符号不匹配
-     1>cylinder.cpp(73): warning C4018: “<”: 有符号/无符号不匹配
-     1>cylinder.cpp(78): warning C4018: “<”: 有符号/无符号不匹配
-         Generating Code...
+         所有输出均为最新。
        ManifestResourceCompile:
-         c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\bicycle_stuns.mll.embed.manifest.res" Debug\bicycle_stuns_manifest.rc 
+         所有输出均为最新。
        Link:
          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\\bicycle_stuns.mll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\Autodesk\Maya2015\lib" ..\odedll.lib Foundation.lib OpenMaya.lib OpenMayaUI.lib OpenMayaAnim.lib OpenMayaFX.lib OpenMayaRender.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\bicycle_stuns.mll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\bicycle_stuns.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE:NO /NXCOMPAT /IMPLIB:"Debug\bicycle_stuns.lib" /MACHINE:X64 /DLL Debug\bicycle_stuns.mll.embed.manifest.res
          Debug\cylinder.obj
@@ -28,20 +14,12 @@
          Debug\LSystemNode.obj
          Debug\PluginMain.obj
          Debug\vec.obj /export:initializePlugin /export:uninitializePlugin 
-            正在创建库 Debug\bicycle_stuns.lib 和对象 Debug\bicycle_stuns.exp
          bicycle_stuns.vcxproj -> C:\Users\lisa\Desktop\BicycleSimulation\Bike_Plugin\bicycle_stuns\..\bicycle_stuns.mll
        Manifest:
-         正在删除文件“Debug\bicycle_stuns.mll.embed.manifest”。
          c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\bicycle_stuns.mll.embed.manifest" /manifest Debug\bicycle_stuns.mll.intermediate.manifest
-         c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\bicycle_stuns.mll.embed.manifest.res" Debug\bicycle_stuns_manifest.rc 
+         所有输出均为最新。
        LinkEmbedManifest:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\\bicycle_stuns.mll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\Autodesk\Maya2015\lib" ..\odedll.lib Foundation.lib OpenMaya.lib OpenMayaUI.lib OpenMayaAnim.lib OpenMayaFX.lib OpenMayaRender.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\bicycle_stuns.mll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"Debug\bicycle_stuns.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE:NO /NXCOMPAT /IMPLIB:"Debug\bicycle_stuns.lib" /MACHINE:X64 /DLL Debug\bicycle_stuns.mll.embed.manifest.res
-         Debug\cylinder.obj
-         Debug\LSystem.obj
-         Debug\LSystemCmd.obj
-         Debug\LSystemNode.obj
-         Debug\PluginMain.obj
-         Debug\vec.obj /export:initializePlugin /export:uninitializePlugin 
+         所有输出均为最新。
          bicycle_stuns.vcxproj -> C:\Users\lisa\Desktop\BicycleSimulation\Bike_Plugin\bicycle_stuns\..\bicycle_stuns.mll
        CopyFilesToOutputDirectory:
          正在将文件从“Debug\bicycle_stuns.pdb”复制到“..\bicycle_stuns.pdb”。
@@ -52,4 +30,4 @@
 
 生成成功。
 
-已用时间 00:00:09.02
+已用时间 00:00:00.39
