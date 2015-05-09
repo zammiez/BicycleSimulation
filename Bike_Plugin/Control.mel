@@ -1,0 +1,150 @@
+//UpStunt()
+
+global proc Simulate_Window()
+{
+    if (`window -exists sim_window`) 
+    deleteUI sim_window; 
+    window -title "timeSlide" -w 350 -h 200 sim_window;
+    columnLayout;
+    //1. Time Slider
+    //string $form = `formLayout timeForm`;
+    int $timeNow = `currentTime -q`;
+    string $timeSlider = `intSliderGrp //!!! change name, editable of the text
+                          -value $timeNow
+                          -min 0 -max 100 
+                          -l "time" 
+                          -field true
+                          -dc "currentTime `intSliderGrp -q -value timeSliderSlider`"
+                          timeSliderSlider`;    
+    //2. Desired Handle Bar Angle
+    columnLayout;
+	floatFieldGrp -numberOfFields 1
+				  -label "Desired handle bar angle"
+				  -extraLabel "degree"
+				  -value1 0
+				  //-min -5;
+				  //-changeCommand "setDesiredAngle();"
+				  lala;
+
+	button -label "set" -width 200 -command "setDesiredAngle()";
+	button -label "Up Stunt" -width 200 -command "UpStunt()";
+
+showWindow sim_window;
+}
+
+global proc UpStunt()
+{
+    int $t = `currentTime -q`; 
+    //float $cImpY = `getAttr "rigidBody_bike.impulseY"`;
+    setAttr "rigidBody_handle.impulseY" 8;
+    setKeyframe "rigidBody_handle.imy";
+    //setAttr "rigidBody_frame.impulseY" 10;
+    //setKeyframe "rigidBody_frame.imy";
+    
+    currentTime ($t-3);
+    setAttr "rigidBody_handle.impulseY" 0;
+    setKeyframe "rigidBody_handle.imy";
+    setAttr "rigidBody_frame.impulseY" 0;
+    setKeyframe "rigidBody_frame.imy";
+    
+    currentTime ($t+1);
+    setAttr "rigidBody_handle.impulseY" 0;
+    setKeyframe "rigidBody_handle.imy";
+    currentTime ($t+2);
+    setAttr "rigidBody_frame.impulseY" 0;
+    setKeyframe "rigidBody_frame.imy";
+    
+}
+
+global proc setBikeAngle()
+{
+    float $angle = `floatFieldGrp -q -value1 bikeangle`;
+    select -r bike ;
+    xform -cp;
+   rotate -r 0 $angle 0;
+    
+   setKeyframe "bike.rotateX";
+   setKeyframe "bike.rotateY";
+   setKeyframe "bike.rotateZ";
+
+}
+global proc setDesiredAngle()
+{
+    float $d_ang = `floatFieldGrp -q -value1 lala`;
+    print "yoyoyo";
+    float $top_pos[3] = `xform -query -translation joint_handle`;
+    print $top_pos;
+    float $bot_pos[3] = `xform -query -translation joint_frontWheel`;
+    print $bot_pos;
+    HandlebarControl($d_ang,$top_pos[0],$top_pos[1],$top_pos[2],$bot_pos[0],$bot_pos[1],$bot_pos[2]);
+    select -r -sym joint_handle ;
+    rotate $d_ang 0 0;
+    setKeyframe;
+
+}
+
+//HandlebarControl(-70,2,3,0,0,0,0);
+global proc HandlebarControl(float $hdlBarAngle,float $ringTopx,float $ringTopy,float $ringTopz,float $ringBotx,float $ringBoty,float $ringBotz)
+{
+     float $axis_x = $ringTopx-$ringBotx;
+     float $axis_y = $ringTopy-$ringBoty;
+     float $axis_z = $ringTopz-$ringBotz;
+     
+     /*float $axis_x = $ringTopx;
+     float $axis_y = $ringTopy+1.374;
+     float $axis_z = $ringTopz;*/
+     //rotate handel bar to certain angle    
+     vector $firstPoint = <<1,0,0>>;
+     vector $quatVec = <<$axis_x,$axis_y,$axis_z>>;
+     float $quatRotation = $hdlBarAngle*3.14/180;
+     vector $secondPoint = rot($firstPoint,$quatVec,$quatRotation);
+     float $eulerRotation[] = `angleBetween -euler -v1 ($firstPoint.x) ($firstPoint.y) ($firstPoint.z) -v2 ($secondPoint.x) ($secondPoint.y) ($secondPoint.z)`;
+     print $eulerRotation;    
+     select handle_wheel;
+     //xform -cp;
+     float $pivPosX =  $ringTopx;
+     float $pivPosY =  $ringTopy;
+     float $pivPosZ =  $ringTopz;
+     /*float $pivPosX =  ($ringBotx+$ringTopx)/2;
+     float $pivPosY =  ($ringBoty+$ringTopy)/2;
+     float $pivPosZ =  ($ringBotz+$ringTopz)/2;*/
+     xform -piv $pivPosX $pivPosY $pivPosZ;
+     rotate  $eulerRotation[0] $eulerRotation[1] $eulerRotation[2];
+     
+     /*select -r -sym joint_handle;
+     xform -ro $hdlBarAngle 0 0;
+     setKeyframe;*/
+     //if($hdlBarAngle>0)
+     //yawAngRot($hdlBarAngle/2);
+     //Change Velocity Direction
+     float $vx = `getAttr "rigidBody_bike.velocityX"`;
+     float $vy = `getAttr "rigidBody_bike.velocityY"`;
+     float $vz = `getAttr "rigidBody_bike.velocityZ"`;
+     $firstPoint = <<$vx,$vy,$vz>>;    
+     vector $newVelocity = rot($firstPoint,$quatVec,$quatRotation);
+     float $bike_mass = `getAttr "rigidBody_bike.mass"`;
+     //setAttr "rigidBody_bike.velocity" ($newVelocity.x) ($newVelocity.y) ($newVelocity.z);
+     float $impulsex = $bike_mass*($newVelocity.x-$vx)*11;
+     float $impulsey = $bike_mass*($newVelocity.y-$vy)*11;
+     $impulsey = 0;
+     float $impulsez = $bike_mass*($newVelocity.z-$vz)*11;
+     //float $impulsex = $newVelocity.x/10;
+     //float $impulsey = $newVelocity.y/100+0.01;
+     //float $impulsez = $newVelocity.z/10;
+     setAttr "rigidBody_bike.impulse" $impulsex $impulsey $impulsez;
+     //impulse position
+     setKeyframe "rigidBody_bike.imx";
+     setKeyframe "rigidBody_bike.imy";
+     setKeyframe "rigidBody_bike.imz";
+     
+     int $cTime = `currentTime -q`;
+     $cTime = $cTime+2;
+     print $cTime;
+     currentTime $cTime;
+     currentTime -q;
+     ClearImpulse();
+     
+
+}
+Simulate_Window;
+//MyMenu;
