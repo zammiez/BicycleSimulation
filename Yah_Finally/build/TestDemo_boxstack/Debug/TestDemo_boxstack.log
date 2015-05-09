@@ -1,0 +1,24 @@
+﻿Build started 5/6/2015 3:30:58 AM.
+     1>Project "C:\Users\zammie\Desktop\ode-0.13\build\TestDemo_boxstack\TestDemo_boxstack.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\TestDemo_boxstack.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MT /D _DEBUG /D dIDEDOUBLE /D CCD_IDEDOUBLE /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D _USE_MATH_DEFINES /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"Debug\TestDemo_boxstack.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MT /D _DEBUG /D dIDEDOUBLE /D CCD_IDEDOUBLE /D WIN32 /D _CRT_SECURE_NO_DEPRECATE /D _USE_MATH_DEFINES /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\TestDemo_boxstack.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt TestDemo_boxstack.cpp
+         TestDemo_boxstack.cpp
+       ManifestResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\TestDemo_boxstack.exe.embed.manifest.res" Debug\TestDemo_boxstack_manifest.rc 
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\zammie\Desktop\ode-0.13\build\vs2008\Debug\TestDemo_boxstack.exe" /INCREMENTAL /NOLOGO ..\..\lib\DebugDoubleDLL\ode_doubled.lib ..\..\lib\DebugDoubleDLL\drawstuffd.lib user32.lib winmm.lib gdi32.lib opengl32.lib glu32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\TestDemo_boxstack.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\zammie\Desktop\ode-0.13\build\vs2008\Debug\TestDemo_boxstack.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\zammie\Desktop\ode-0.13\build\vs2008\Debug\TestDemo_boxstack.lib" /MACHINE:X86 Debug\TestDemo_boxstack.exe.embed.manifest.res
+         Debug\stdafx.obj
+         Debug\TestDemo_boxstack.obj
+         "C:\Users\zammie\Desktop\ode-0.13\lib\DebugDoubleDLL\drawstuffd.lib"
+         "C:\Users\zammie\Desktop\ode-0.13\lib\DebugDoubleDLL\ode_doubled.lib"
+     1>MSVCRTD.lib(crtexe.obj) : error LNK2019: unresolved external symbol _main referenced in function ___tmainCRTStartup
+     1>C:\Users\zammie\Desktop\ode-0.13\build\vs2008\Debug\TestDemo_boxstack.exe : fatal error LNK1120: 1 unresolved externals
+     1>Done Building Project "C:\Users\zammie\Desktop\ode-0.13\build\TestDemo_boxstack\TestDemo_boxstack.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.57

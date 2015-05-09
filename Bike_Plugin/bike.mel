@@ -1,0 +1,219 @@
+float $top_pos[3];
+float $bot_pos[3];
+
+global proc MyMenu(){
+    global string $myMenuMain;
+        if (`menu -exists $myMenuMain`) 
+           deleteUI $myMenuMain;
+    string $name = "Bicycle Stunts";
+    
+    global string $gMainWindow;
+    $myMenuMain = `menu -p $gMainWindow -tearOff true -l $name`;
+    
+    menuItem -p $myMenuMain -l "bind your bicycle" -c "bind_window()";
+}
+global proc set_success(){
+   if(`window -ex "win_set_success"`)
+          deleteUI "win_set_success";
+   window -t "success"
+           -w 100 -h 150 
+           "win_set_success";
+   columnLayout -adj 1 layout1;
+   text -l "set successfully";	   
+   button -label "confirm" -command" deleteUI \"win_set_success\"";	
+   showWindow "win_set_success" ;  
+}
+global proc bind_window(){
+
+   if(`window -ex "win_bind"`)
+          deleteUI "win_bind";
+   window -t "Call LSystem Command"
+           -w 600 -h 350 
+           "win_bind";
+   columnLayout -adj 1 layout1;
+      text -l "please follow the instructions bellow:";
+	  text -l "1.group part of the the bike";
+	  text -l "2.select the part on your bike model corresponding to the button and then click it";
+	  button -label "front wheel" -command "string $selection[] = `ls -selection`;rename $selection[0] \"front_wheel\" " ;
+      button -label "back wheel" -command " string $selection[] = `ls -selection`;rename $selection[0] \"back_wheel\"" ;
+      button -label "handle" -command "string $selection[] = `ls -selection`;rename $selection[0] \"handle\" " ;
+	  button -label "frame" -command "string $selection[] = `ls -selection`;rename $selection[0] \"frame\"  " ;
+      button -label "top ring" -command "string $selection[] = `ls -selection`;rename $selection[0] \"top_ring\"  " ;
+	  button -label "bottom ring" -command "string $selection[] = `ls -selection`;rename $selection[0] \"bottom_ring\"  " ;
+      button -label "confirm" -command "bin();";
+	  
+	  button -label "run" -command "countAngle();";
+//	GetAxis() ;
+	
+   
+   
+   showWindow "win_bind";  
+	
+   }
+   
+global proc bin(){
+	select front_wheel handle;
+	doGroup 0 1 1;
+	rename "handle_wheel";
+    select front_wheel back_wheel handle frame top_ring bottom_ring;
+    doGroup 0 1 1;
+    rename "bike";
+    select bike;
+    rigidBody -active -name "rigidBody_bike" -m 1 -dp 0 -sf 0.2 -df 0.2 -b 0.6 -l 0 -tf 200 -iv 0 0 0 -iav 0 0 0 -c 0 -pc 0 -i 0 0 0 -imp 0 0 0 -si 0 0 0 -sio none
+}   
+global proc  GetAxis(){
+    $top_pos[3] = `xform -worldSpace -query -translation top_ring`;
+    $bot_pos[3] = `xform -worldSpace -query -translation bottom_ring`;
+}
+global proc countAngle(){
+	
+   float $top_pos[3] = `xform -worldSpace -query -translation top_ring`;
+   float $bottom_pos[3] = `xform -worldSpace -query -translation bottom_ring`;
+   $pos=$top_pos[3]-$bottom_pos[3];
+   int $number=`getAttr curve2.spans`;//total points number+2
+   int $points=$number+2;
+   select bike;
+   move -r x,y,z
+
+   for($i=0;$i<$number;$i++){
+       $t2=`pointPosition -w curve1.ep[$i+2]`;
+       $t1=`pointPosition -w curve1.ep[$i+1]`;
+       $t0=`pointPosition -w curve1.ep[$i]`;
+       $t0_x=$t1[0]-$t0[0];
+       $t0_y=$t1[1]-$t0[1];
+       $t0_z=$t1[2]-$t0[2];
+       $t1_x=$t2[0]-$t1[0];
+       $t1_y=$t2[1]-$t1[1];
+       $t1_z=$t2[2]-$t1[2];
+  
+       int $crntTime = `currentTime -q`;
+	   float $v_x = getAttr "rigidBody_bike.velocityX";
+       float $v_y = getAttr "rigidBody_bike.velocityY";
+       float $v_z = getAttr "rigidBody_bike.velocityZ";
+       float $speed = sqrt(pow($v_x,2)+pow($v_y,2)+pow($v_z,2));
+	   int $deltTime = $vLength/$speed;
+       currentTime ($crntTime+$deltTime);
+  
+       $t0_cube_value=pow($t0_x,2)+pow($t0_y,2)+pow($t0_z,2);
+       $t0_value=sqrt($t0_cube_value);
+       $t1_cube_value=pow($t1_x,2)+pow($t1_y,2)+pow($t1_z,2);
+       $t1_value=sqrt($t1_cube_value);
+       $costheta=($t0_x*$t1_x+$t0_y*$t1_y+$t0_z*$t1_z)/($t0_value*$t1_value);
+
+       $theta=acos($costheta);
+       $theta=$theta*90;
+       HandlebarControl($theta,$x,float $y,float $z);
+    }
+   }
+   
+global proc HandlebarControl(float $hdlBarAngle,float $axis_x,float $axis_y,float $axis_z)
+{
+     //select rigidBody_bike;
+     vector $firstPoint = <<1,1,1>>;
+     vector $quatVec = <<$axis_x,$axis_y,$axis_z>>;
+     float $quatRotation = $hdlBarAngle*3.14/360;
+     vector $secondPoint = rot($firstPoint,$quatVec,$quatRotation);
+     float $eulerRotation[] = `angleBetween -euler -v1 ($firstPoint.x) ($firstPoint.y) ($firstPoint.z) -v2 ($secondPoint.x) ($secondPoint.y) ($secondPoint.z)`;
+     print $eulerRotation;    
+     select handle_wheel;
+     xform -cp;
+     rotate  $eulerRotation[0] $eulerRotation[1] $eulerRotation[2];
+     
+}
+global proc stairs(){
+	if(`window -ex "win_stunts"`)
+          deleteUI "win_stunts";
+    window -t "choose your stunts"
+           -w 400 -h 350 
+           "win_stunts";
+	columnLayout;
+	text -l "stairs attribute:";
+	$step_number=`intSliderGrp -l "Step number" -min 1 -f true`;
+	rowLayout -numberOfColumns 3; 
+	$step_length=`floatSliderGrp -l "length" -min 0 -f true`;
+	$step_width=`floatSliderGrp -l "width" -min 0 -f true`;
+	$step_height=`floatSliderGrp -l "height" -min 0 -f true`;
+	setParent..;
+	//("callL" + " "+  $grammar + " "+ $iterationsld + " " + $stepsld + " " + $anglesld+" ; " )
+	button -l "confirm" -command ("create_stair " + " "+ $step_number + " "+ $step_length + " " + $step_width + " "+ $step_height +";");
+	showWindow"win_stunts";
+}
+global proc create_stair(string $step_number,string $step_length, string $step_width,string $step_height){
+	int $number = `intSliderGrp -q -value $step_number`;
+	float $length = `floatSliderGrp -q -value $step_length`;
+	float $width = `floatSliderGrp -q -value $step_width`;
+	float $height = `floatSliderGrp -q -value $step_height`;
+	$locationx=0.0;
+	$locationy=0.0;
+	$locationz=0.0;
+    $i = 0;
+    while($i < $number){
+            polyCube; 
+			scale $length $height $width; 
+			$x = $locationx; 
+			$y = $locationy + ($i * $height); 
+			$z = $locationz +($i * $width);
+            move $x $y $z; 
+			$i++; 
+			}
+
+ }
+string $mpNode=`pathAnimation -curve myCurve seat`;
+float $maxvalue=`getAttr myCurveShape.minMaxValue.maxValue`;
+float $endTime =`playbackOptions -query -animationEndTime`;
+setKeyframe -time $endTime -value $maxValue -attribute uValue $mpNode;
+
+
+
+for($i=0;$i<$endTime-2;$i++){
+//for(int $j=0;$j<$endTime;$j++){
+	
+//}
+   currentTime ($i);
+   float $t0[]=`xform -worldSpace -query -translation seat`;
+   currentTime ($i+1);
+   float $t1[]=`xform -worldSpace -query -translation seat`;
+   currentTime ($i+2);
+   float $t2[]=`xform -worldSpace -query -translation seat`;
+   currentTime ($i);
+   float $theta;
+    $t0_x=$t1[0]-$t0[0];
+    $t0_y=$t1[1]-$t0[1];
+    $t0_z=$t1[2]-$t0[2];
+    $t1_x=$t2[0]-$t1[0];
+    $t1_y=$t2[1]-$t1[1];
+    $t1_z=$t2[2]-$t1[2];
+   float $t0_cube_value=$t0_x*$t0_x+$t0_y*$t0_y+$t0_z*$t0_z;
+   $t0_value=sqrt(abs($t0_cube_value));
+   float $t1_cube_value=$t1_x*$t1_x+$t1_y*$t1_y+$t1_z*$t1_z;
+   float $t1_value=sqrt(abs($t1_cube_value));
+   if($t0_value==0||$t1_value==0){$theta=0;}
+   else{
+       float $costheta=($t0_x*$t1_x+$t0_y*$t1_y+$t0_z*$t1_z)/($t0_value*$t1_value);
+
+       $theta=acos( $costh 
+       }
+	   if($theta>180)$theta-=$theta;
+    select front_control;
+    //move -a $t1[0] $t2[0] $t3[0];
+    rotate -r -os $theta 0 0 ;
+  setKeyframe -at rotateX -at rotateZ seat;
+select seat;
+rotate -r -os $theta 0 0 ;
+setKeyframe -at rotateX -at rotateZ front_control;
+//setKeyframe -at 
+ global proc stunts (){
+	if(`window -ex "win_stunts"`)
+          deleteUI "win_stunts";
+   window -t "choose your stunts"
+           -w 600 -h 350 
+           "win_stunts";
+   columnLayout -adj 1 layout1;
+      text -l "Create stairs:";
+	  button -label "Create stairs" -command " stairs(); " ;
+
+	
+	
+}
+   MyMenu;
+   
