@@ -42,59 +42,35 @@ MStatus LSystemCmd::doIt( const MArgList& args )
 		MString crntTime;
 		crntTime.set(time);
 		MGlobal::executeCommand("currentTime "+crntTime+";");
-		cout<<"Time: "<< time <<endl;
-		cout<<"- frame:\t"<<SimODE::GetFramePos_Body0x()<<"\t"<<SimODE::GetFramePos_Body0y()<<endl;
 
 		//Keyframe Frame_body0
-		MString FramePosx;
-		FramePosx.set(SimODE::GetFramePos_Body0x());
-		MString FramePosy;
-		FramePosy.set(SimODE::GetFramePos_Body0y());
-		MString FramePosz;
-		FramePosz.set(SimODE::GetFramePos_Body0z());
-		MString MoveKeyCommand = ("select -r frame; move " + FramePosx +" "+FramePosy +" "+FramePosz +";");
+		MString FramePosx,FramePosy,FramePosz;
+		FramePosx.set(SimODE::getFrame_Px());
+		FramePosy.set(SimODE::getFrame_Py());
+		FramePosz.set(SimODE::getFrame_Pz());
+		MString MoveKeyCommand = ("setAttr \"frame.translate\" " + FramePosx +" "+FramePosy +" "+FramePosz +";");	
 		MGlobal::executeCommand(MoveKeyCommand);
-		MGlobal::executeCommand("setKeyframe;");
-		cout<<MoveKeyCommand.asChar()<<endl;
-		
+		MGlobal::executeCommand("setKeyframe frame.translate;");
 		//Keyframe FrontWheel_body1
-		MString T0,T1,T2,T3,T4,T5,T6,T7,T8,T9,T10,T11,T12,T13,T14,T15;
-		T0.set(SimODE::getFrontTrans_0());
-		T1.set(SimODE::getFrontTrans_1());
-		T2.set(SimODE::getFrontTrans_2());
-		T3.set(SimODE::getFrontTrans_3());
-		T4.set(SimODE::getFrontTrans_4());
-		T5.set(SimODE::getFrontTrans_5());
-		T6.set(SimODE::getFrontTrans_6());
-		T7.set(SimODE::getFrontTrans_7());
-		T8.set(SimODE::getFrontTrans_8());
-		T9.set(SimODE::getFrontTrans_9());
-		T10.set(SimODE::getFrontTrans_10());
-		T11.set(SimODE::getFrontTrans_11());
-		T12.set(SimODE::getFrontTrans_12());
-		T13.set(SimODE::getFrontTrans_13());
-		T14.set(SimODE::getFrontTrans_14());
-		T15.set(SimODE::getFrontTrans_15());
-		MoveKeyCommand = "xform -matrix " + 
-									T0 + " " + T1 +" " + T2 +" " + T3 +" " +
-									T4 + " " + T5 +" " + T6 +" " + T7 +" " +
-									T8 + " " + T9 +" " + T10+" " + T11+" " +
-									T12+ " " + T13+" " + T14+" " + T15+" ;" 
-									;
-		MoveKeyCommand = "select -r front_wheel;" + MoveKeyCommand;
+		MString FrontPx,FrontPy,FrontPz;
+		FrontPx.set(SimODE::getFront_Px());
+		FrontPy.set(SimODE::getFront_Py());
+		FrontPz.set(SimODE::getFront_Pz());
+		 MoveKeyCommand = ("setAttr \"front_wheel.translate\" " + FrontPx +" "+FrontPy +" "+FrontPz +";");	
+		MGlobal::executeCommand(MoveKeyCommand);
+		MGlobal::executeCommand("setKeyframe front_wheel.translate;");
 
+		MString FrontRx,FrontRy,FrontRz;
+		FrontRx.set(SimODE::getFront_Rx());
+		FrontRy.set(SimODE::getFront_Ry());
+		FrontRz.set(SimODE::getFront_Rz());
+		 MoveKeyCommand = ("setAttr \"front_wheel.rotate\" " + FrontRx +" "+FrontRy +" "+FrontRz +";");	
 		MGlobal::executeCommand(MoveKeyCommand);
-		MGlobal::executeCommand("setKeyframe;");
-		//Set BackWheel Position.
-		MString BackWheelPosx;
-		BackWheelPosx.set(SimODE::GetBackWheelPos_Body2x());
-		MString BackWheelPosy;
-		BackWheelPosy.set(SimODE::GetBackWheelPos_Body2y());
-		MString BackWheelPosz;
-		BackWheelPosz.set(SimODE::GetBackWheelPos_Body2z());
-		MoveKeyCommand = ("select -r back_wheel; move " + BackWheelPosx +" "+BackWheelPosy +" "+BackWheelPosz +";");
-		MGlobal::executeCommand(MoveKeyCommand);
-		MGlobal::executeCommand("setKeyframe;");
+		MGlobal::executeCommand("setKeyframe front_wheel.rotate;");
+
+		//Keyframe BackWheel Position.
+
+
 
 		cout<<"set:"<<time<<endl;
 	}

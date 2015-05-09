@@ -1,4 +1,4 @@
-﻿Build started 5/8/2015 9:21:53 PM.
+﻿Build started 5/9/2015 5:21:44 PM.
      1>Project "C:\Users\zammie\Music\__BikeODE\Yah_Finally\build\_vs2010\odedll\odedll.vcxproj" on node 2 (rebuild target(s)).
      1>_PrepareForClean:
          Deleting file "x64\Debug\odedll.lastbuildstate".
@@ -14,97 +14,65 @@
      1>odedll.cpp(70): warning C4273: 'SimODE::BikeSimODE::Miao' : inconsistent dll linkage
                  c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(11) : see previous definition of 'Miao'
      1>odedll.cpp(72): warning C4244: 'initializing' : conversion from 'dReal' to 'int', possible loss of data
-     1>odedll.cpp(77): warning C4273: 'SimODE::InitBikeODE' : inconsistent dll linkage
+     1>odedll.cpp(98): warning C4273: 'SimODE::InitBikeODE' : inconsistent dll linkage
                  c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(13) : see previous definition of 'InitBikeODE'
-     1>odedll.cpp(111): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
-     1>odedll.cpp(112): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
-     1>odedll.cpp(113): warning C4244: '-=' : conversion from 'const dReal' to 'float', possible loss of data
-     1>odedll.cpp(115): warning C4244: '+=' : conversion from 'const dReal' to 'float', possible loss of data
-     1>odedll.cpp(174): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
-     1>odedll.cpp(175): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
-     1>odedll.cpp(176): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
-     1>odedll.cpp(193): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
-     1>odedll.cpp(194): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
+     1>odedll.cpp(132): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
+     1>odedll.cpp(133): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
+     1>odedll.cpp(134): warning C4244: '-=' : conversion from 'const dReal' to 'float', possible loss of data
+     1>odedll.cpp(136): warning C4244: '+=' : conversion from 'const dReal' to 'float', possible loss of data
      1>odedll.cpp(195): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
      1>odedll.cpp(196): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
      1>odedll.cpp(197): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
-     1>odedll.cpp(198): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
-     1>odedll.cpp(276): warning C4273: 'SimODE::Seek' : inconsistent dll linkage
+     1>odedll.cpp(214): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
+     1>odedll.cpp(215): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
+     1>odedll.cpp(216): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
+     1>odedll.cpp(217): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
+     1>odedll.cpp(218): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
+     1>odedll.cpp(219): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
+     1>odedll.cpp(297): warning C4273: 'SimODE::Seek' : inconsistent dll linkage
                  c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(14) : see previous definition of 'Seek'
-     1>odedll.cpp(297): warning C4244: 'initializing' : conversion from 'dReal' to 'float', possible loss of data
-     1>odedll.cpp(298): warning C4244: 'initializing' : conversion from 'dReal' to 'float', possible loss of data
-     1>odedll.cpp(314): warning C4244: 'initializing' : conversion from 'dReal' to 'float', possible loss of data
-     1>odedll.cpp(404): warning C4273: 'SimODE::simLoop' : inconsistent dll linkage
+     1>odedll.cpp(318): warning C4244: 'initializing' : conversion from 'dReal' to 'float', possible loss of data
+     1>odedll.cpp(319): warning C4244: 'initializing' : conversion from 'dReal' to 'float', possible loss of data
+     1>odedll.cpp(335): warning C4244: 'initializing' : conversion from 'dReal' to 'float', possible loss of data
+     1>odedll.cpp(367): warning C4273: 'SimODE::simLoop' : inconsistent dll linkage
                  c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(15) : see previous definition of 'simLoop'
-     1>odedll.cpp(445): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
-     1>odedll.cpp(446): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
-     1>odedll.cpp(447): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
-     1>odedll.cpp(448): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
-     1>odedll.cpp(449): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
-     1>odedll.cpp(450): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
-     1>odedll.cpp(480): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-     1>odedll.cpp(480): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-     1>odedll.cpp(437): warning C4101: 'i' : unreferenced local variable
-     1>odedll.cpp(499): warning C4273: 'SimODE::JumpOver' : inconsistent dll linkage
+     1>odedll.cpp(398): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
+     1>odedll.cpp(399): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
+     1>odedll.cpp(400): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
+     1>odedll.cpp(401): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
+     1>odedll.cpp(402): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
+     1>odedll.cpp(403): warning C4244: 'initializing' : conversion from 'const dReal' to 'float', possible loss of data
+     1>odedll.cpp(433): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>odedll.cpp(433): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>odedll.cpp(390): warning C4101: 'i' : unreferenced local variable
+     1>odedll.cpp(452): warning C4273: 'SimODE::JumpOver' : inconsistent dll linkage
                  c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(16) : see previous definition of 'JumpOver'
-     1>odedll.cpp(534): warning C4273: 'SimODE::GetFramePos_Body0x' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(19) : see previous definition of 'GetFramePos_Body0x'
-     1>odedll.cpp(538): warning C4273: 'SimODE::GetFramePos_Body0y' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(20) : see previous definition of 'GetFramePos_Body0y'
-     1>odedll.cpp(542): warning C4273: 'SimODE::GetFramePos_Body0z' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(21) : see previous definition of 'GetFramePos_Body0z'
-     1>odedll.cpp(548): warning C4273: 'SimODE::GetFrontWheelPos_Body1x' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(28) : see previous definition of 'GetFrontWheelPos_Body1x'
-     1>odedll.cpp(552): warning C4273: 'SimODE::GetFrontWheelPos_Body1y' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(29) : see previous definition of 'GetFrontWheelPos_Body1y'
-     1>odedll.cpp(556): warning C4273: 'SimODE::GetFrontWheelPos_Body1z' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(30) : see previous definition of 'GetFrontWheelPos_Body1z'
-     1>odedll.cpp(570): warning C4273: 'SimODE::getFrontTrans_0' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(42) : see previous definition of 'getFrontTrans_0'
-     1>odedll.cpp(571): warning C4273: 'SimODE::getFrontTrans_1' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(43) : see previous definition of 'getFrontTrans_1'
-     1>odedll.cpp(572): warning C4273: 'SimODE::getFrontTrans_2' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(44) : see previous definition of 'getFrontTrans_2'
-     1>odedll.cpp(573): warning C4273: 'SimODE::getFrontTrans_3' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(45) : see previous definition of 'getFrontTrans_3'
-     1>odedll.cpp(574): warning C4273: 'SimODE::getFrontTrans_4' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(46) : see previous definition of 'getFrontTrans_4'
-     1>odedll.cpp(575): warning C4273: 'SimODE::getFrontTrans_5' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(47) : see previous definition of 'getFrontTrans_5'
-     1>odedll.cpp(576): warning C4273: 'SimODE::getFrontTrans_6' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(48) : see previous definition of 'getFrontTrans_6'
-     1>odedll.cpp(577): warning C4273: 'SimODE::getFrontTrans_7' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(49) : see previous definition of 'getFrontTrans_7'
-     1>odedll.cpp(578): warning C4273: 'SimODE::getFrontTrans_8' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(50) : see previous definition of 'getFrontTrans_8'
-     1>odedll.cpp(579): warning C4273: 'SimODE::getFrontTrans_9' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(51) : see previous definition of 'getFrontTrans_9'
-     1>odedll.cpp(580): warning C4273: 'SimODE::getFrontTrans_10' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(52) : see previous definition of 'getFrontTrans_10'
-     1>odedll.cpp(581): warning C4273: 'SimODE::getFrontTrans_11' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(53) : see previous definition of 'getFrontTrans_11'
-     1>odedll.cpp(582): warning C4273: 'SimODE::getFrontTrans_12' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(54) : see previous definition of 'getFrontTrans_12'
-     1>odedll.cpp(583): warning C4273: 'SimODE::getFrontTrans_13' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(55) : see previous definition of 'getFrontTrans_13'
-     1>odedll.cpp(584): warning C4273: 'SimODE::getFrontTrans_14' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(56) : see previous definition of 'getFrontTrans_14'
-     1>odedll.cpp(585): warning C4273: 'SimODE::getFrontTrans_15' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(57) : see previous definition of 'getFrontTrans_15'
-     1>odedll.cpp(588): warning C4273: 'SimODE::GetBackWheelPos_Body2x' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(61) : see previous definition of 'GetBackWheelPos_Body2x'
-     1>odedll.cpp(593): warning C4273: 'SimODE::GetBackWheelPos_Body2y' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(62) : see previous definition of 'GetBackWheelPos_Body2y'
-     1>odedll.cpp(598): warning C4273: 'SimODE::GetBackWheelPos_Body2z' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(63) : see previous definition of 'GetBackWheelPos_Body2z'
-     1>odedll.cpp(605): warning C4273: 'SimODE::GetBarPos_Body3x' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(69) : see previous definition of 'GetBarPos_Body3x'
-     1>odedll.cpp(611): warning C4273: 'SimODE::GetBarPos_Body3y' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(70) : see previous definition of 'GetBarPos_Body3y'
-     1>odedll.cpp(616): warning C4273: 'SimODE::GetBarPos_Body3z' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(71) : see previous definition of 'GetBarPos_Body3z'
-     1>odedll.cpp(640): warning C4273: 'SimODE::GetTimeStep' : inconsistent dll linkage
-                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(87) : see previous definition of 'GetTimeStep'
+     1>odedll.cpp(486): warning C4273: 'SimODE::GetTimeStep' : inconsistent dll linkage
+                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(45) : see previous definition of 'GetTimeStep'
+     1>odedll.cpp(493): warning C4273: 'SimODE::getFrame_Px' : inconsistent dll linkage
+                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(19) : see previous definition of 'getFrame_Px'
+     1>odedll.cpp(494): warning C4273: 'SimODE::getFrame_Py' : inconsistent dll linkage
+                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(20) : see previous definition of 'getFrame_Py'
+     1>odedll.cpp(495): warning C4273: 'SimODE::getFrame_Pz' : inconsistent dll linkage
+                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(21) : see previous definition of 'getFrame_Pz'
+     1>odedll.cpp(498): warning C4273: 'SimODE::getFront_Px' : inconsistent dll linkage
+                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(28) : see previous definition of 'getFront_Px'
+     1>odedll.cpp(499): warning C4273: 'SimODE::getFront_Py' : inconsistent dll linkage
+                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(29) : see previous definition of 'getFront_Py'
+     1>odedll.cpp(500): warning C4273: 'SimODE::getFront_Pz' : inconsistent dll linkage
+                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(30) : see previous definition of 'getFront_Pz'
+     1>odedll.cpp(502): warning C4273: 'SimODE::getFront_Rx' : inconsistent dll linkage
+                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(32) : see previous definition of 'getFront_Rx'
+     1>odedll.cpp(503): warning C4273: 'SimODE::getFront_Ry' : inconsistent dll linkage
+                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(33) : see previous definition of 'getFront_Ry'
+     1>odedll.cpp(504): warning C4273: 'SimODE::getFront_Rz' : inconsistent dll linkage
+                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(34) : see previous definition of 'getFront_Rz'
+     1>odedll.cpp(507): warning C4273: 'SimODE::getBack_Px' : inconsistent dll linkage
+                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(37) : see previous definition of 'getBack_Px'
+     1>odedll.cpp(508): warning C4273: 'SimODE::getBack_Py' : inconsistent dll linkage
+                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(38) : see previous definition of 'getBack_Py'
+     1>odedll.cpp(509): warning C4273: 'SimODE::getBack_Pz' : inconsistent dll linkage
+                 c:\users\zammie\music\__bikeode\yah_finally\build\_vs2010\odedll\odedll.h(39) : see previous definition of 'getBack_Pz'
        ManifestResourceCompile:
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"x64\Debug\odedll.dll.embed.manifest.res" x64\Debug\odedll_manifest.rc 
        Link:
@@ -132,4 +100,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.60
+Time Elapsed 00:00:01.65

@@ -72,6 +72,27 @@ int BikeSimODE::Miao()
 		int aa = miao+3;
 		return aa;
 }
+void get_euler(const dReal * matrix,dReal &kx,dReal &ky,dReal &kz)
+{       
+const dReal epsilon=0.0000001;
+
+if(matrix[8] < 1-epsilon && matrix[8] > -1+epsilon){
+        ky=-asin(matrix[8]);
+        dReal c=cos(ky);
+        kx= atan2(matrix[9]/c,matrix[10]/c);
+        kz= atan2(matrix[4]/c,matrix[0]/c);
+        }       
+else    
+        {       
+        kz=0;   
+        ky=-atan2(matrix[8],0);
+        kx= atan2(-matrix[6],matrix[5]);
+        }   
+kx*=(180/3.1415926);
+ky*=(180/3.1415926);
+kz*=(180/3.1415926);
+
+}    
 
 int InitBikeODE()
 {
@@ -328,81 +349,22 @@ static double Frame_Px;
 static double Frame_Py;
 static double Frame_Pz;
 
-static double Frame_R00;
-static double Frame_R01;
-static double Frame_R02;
-
-static double Frame_R10;
-static double Frame_R11;
-static double Frame_R12;
-
-static double Frame_R20;
-static double Frame_R21;
-static double Frame_R22;
-
 //front
 static double Front_Px;
 static double Front_Py;
 static double Front_Pz;
 
-static double Front_R00;
-static double Front_R01;
-static double Front_R02;
-static double Front_R10;
-static double Front_R11;
-static double Front_R12;
-static double Front_R20;
-static double Front_R21;
-static double Front_R22;
+static double Front_Rx;
+static double Front_Ry;
+static double Front_Rz;
 
 //back
 static double Back_Px;
 static double Back_Py;
 static double Back_Pz;
 
-//Transformations
-static double FrontTrans_0;
-static double FrontTrans_1;
-static double FrontTrans_2;
-static double FrontTrans_3;
-static double FrontTrans_4;
-static double FrontTrans_5;
-static double FrontTrans_6;
-static double FrontTrans_7;
-static double FrontTrans_8;
-static double FrontTrans_9;
-static double FrontTrans_10;
-static double FrontTrans_11;
-static double FrontTrans_12;
-static double FrontTrans_13;
-static double FrontTrans_14;
-static double FrontTrans_15;
-
-void CalcFrontTrans()
-{
-	const dReal * R = dBodyGetRotation(body[1]);
-	const dReal * P = dBodyGetPosition(body[1]);
-	FrontTrans_0 = R[0];
-	FrontTrans_1 = R[4];
-	FrontTrans_2 = R[8];
-	FrontTrans_3 = 0;
-	FrontTrans_4 = R[1];
-	FrontTrans_5 = R[5];
-	FrontTrans_6 = R[9];
-	FrontTrans_7 = 0;
-	FrontTrans_8 = R[2];
-	FrontTrans_9 = R[6];
-	FrontTrans_10 = R[10];
-	FrontTrans_11 = 0;
-	FrontTrans_12 = P[0];
-	FrontTrans_13 = P[1];
-	FrontTrans_14 = P[2];
-	FrontTrans_15 = 1;
-}
-
 void simLoop (int pause)
 {
-	CalcFrontTrans();
 	//body0: Frame Update
 	const dReal * frameBody0 = dBodyGetPosition(body[0]);
 	Frame_Px = frameBody0[0];
@@ -415,17 +377,8 @@ void simLoop (int pause)
 	Front_Py = frontBody1[1];
 	Front_Pz = frontBody1[2];
 	const dReal * frontRBody1 = dBodyGetRotation(body[1]);
-	Front_R00 = frontRBody1[0];
-	Front_R01 = frontRBody1[1];
-	Front_R02 = frontRBody1[2];
-	
-	Front_R10 = frontRBody1[3];
-	Front_R11 = frontRBody1[4];
-	Front_R12 = frontRBody1[5];
-	
-	Front_R20 = frontRBody1[6];
-	Front_R21 = frontRBody1[7];
-	Front_R22 = frontRBody1[8];
+	get_euler(frontRBody1,Front_Rx,Front_Ry,Front_Rz);
+
 	//body2: Back Wheel update
 	const dReal * backBody2 = dBodyGetPosition(body[2]);
 	Back_Px = backBody2[0];
@@ -529,116 +482,30 @@ void JumpOver(int crnt,int start, int middle, int end)
 	dBodyAddForce(body[2],0.0, 0.0,W_Force );
 }
 
-//Body 0 : Frame
-double GetFramePos_Body0x()
-{
-	return Front_Px;
-}
-double GetFramePos_Body0y()
-{
-	return Front_Py;
-}
-double GetFramePos_Body0z()
-{
-	return Front_Pz;
-}
-
-//Body 1 : Front Wheel
-double GetFrontWheelPos_Body1x()
-{
-	return Front_Px;
-}
-double GetFrontWheelPos_Body1y()
-{
-	return Front_Py;
-}
-double GetFrontWheelPos_Body1z()
-{
-	return Front_Pz;
-}
-/*
-double getFront_R00(){return Front_R00;}
-double getFront_R01(){return Front_R01;}
-double getFront_R02(){return Front_R02;}
-double getFront_R10(){return Front_R10;}
-double getFront_R11(){return Front_R11;}
-double getFront_R12(){return Front_R12;}
-double getFront_R20(){return Front_R20;}
-double getFront_R21(){return Front_R21;}
-double getFront_R22(){return Front_R22;}*/
-
-double getFrontTrans_0(){return FrontTrans_0;}
-double getFrontTrans_1(){return FrontTrans_1;}
-double getFrontTrans_2(){return FrontTrans_2;}
-double getFrontTrans_3(){return FrontTrans_3;}
-double getFrontTrans_4(){return FrontTrans_4;}
-double getFrontTrans_5(){return FrontTrans_5;}
-double getFrontTrans_6(){return FrontTrans_6;}
-double getFrontTrans_7(){return FrontTrans_7;}
-double getFrontTrans_8(){return FrontTrans_8;}
-double getFrontTrans_9(){return FrontTrans_9;}
-double getFrontTrans_10(){return FrontTrans_10;}
-double getFrontTrans_11(){return FrontTrans_11;}
-double getFrontTrans_12(){return FrontTrans_12;}
-double getFrontTrans_13(){return FrontTrans_13;}
-double getFrontTrans_14(){return FrontTrans_14;}
-double getFrontTrans_15(){return FrontTrans_15;}
-
-//Body 2 : Back Wheel
-double GetBackWheelPos_Body2x(){
-	const dReal *b2 = dBodyGetPosition (body[2]);
-	double mm = b2[0];
-	return mm;
-}
-double GetBackWheelPos_Body2y(){
-	const dReal *b2 = dBodyGetPosition (body[2]);
-	double mm = b2[1];
-	return mm;
-}
-double GetBackWheelPos_Body2z(){
-	const dReal *b2 = dBodyGetPosition (body[2]);
-	double mm = b2[2];
-	return mm;
-}
-//Body 3 : (Handle) Bar
-double GetBarPos_Body3x()
-{
-	const dReal *b3 = dBodyGetPosition (body[3]);
-	double mm = b3[0];
-	return mm;
-}
-double GetBarPos_Body3y()
-{
-	const dReal *b3 = dBodyGetPosition (body[3]);
-	double mm = b3[1];
-	return mm;
-}
-double GetBarPos_Body3z(){
-	const dReal *b3 = dBodyGetPosition (body[3]);
-	double mm = b3[2];
-	return mm;
-}
-//Body 4 : Handle
-double GetHandlePos_Body4x(){
-	const dReal *b4 = dBodyGetPosition (body[4]);
-	double mm = b4[0];
-	return mm;
-}
-double GetHandlePos_Body4y(){
-	const dReal *b4 = dBodyGetPosition (body[4]);
-	double mm = b4[1];
-	return mm;
-}
-double GetHandlePos_Body4z(){
-	const dReal *b4 = dBodyGetPosition (body[4]);
-	double mm = b4[2];
-	return mm;
-}
-
-
 double GetTimeStep()
 {
 	double timedt = time_step;
 	return timedt;
 }
+
+
+//Frame
+double getFrame_Px(){return Frame_Px;}
+double getFrame_Py(){return Frame_Py;}
+double getFrame_Pz(){return Frame_Pz;}
+
+//Front wheel
+double getFront_Px(){return Front_Px;}
+double getFront_Py(){return Front_Py;}
+double getFront_Pz(){return Front_Pz;}
+
+double getFront_Rx(){return Front_Rx;}
+double getFront_Ry(){return Front_Ry;}
+double getFront_Rz(){return Front_Rz;}
+
+//Back wheel
+double getBack_Px(){return Back_Px;}
+double getBack_Py(){return Back_Py;}
+double getBack_Pz(){return Back_Pz;}
+
 }
