@@ -26,7 +26,7 @@ MStatus initializePlugin( MObject obj )
 
 	status = plugin.registerCommand( "LSystemCmd", LSystemCmd::creator, LSystemCmd::newSyntax );
 	//****************		2.2c MEL GUI		********************//
-	MGlobal::executeCommand("C:\\Users\\zammie\\Downloads\\HW2_ZiweiZong\\HW2_ZiweiZong\\HW2_Ziwei\\GUIMel.mel\";",true);
+	MGlobal::executeCommand("\"C:\Users\zammie\Downloads\HW2_ZiweiZong\HW2_ZiweiZong\HW2_Ziwei\GUIMel.mel\";",true);
 	status = plugin.registerUI("createLSystemUI","deleteLSystemUI");
 	if (!status) {
         status.perror("registerCommand");

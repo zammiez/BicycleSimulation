@@ -85,29 +85,7 @@ MStatus LSystemCmd::doIt( const MArgList& args )
 
 		MGlobal::executeCommand(MoveKeyCommand);
 		MGlobal::executeCommand("setKeyframe;");
-		/*MString Px,Py,Pz;
-		Px.set(SimODE::GetFrontWheelPos_Body1x());
-		Py.set(SimODE::GetFrontWheelPos_Body1y());
-		Pz.set(SimODE::GetFrontWheelPos_Body1z());
-
-		MString R00,R01,R02,
-				R10,R11,R12,
-				R20,R21,R22;
-		R00.set(SimODE::getFront_R00());	R01.set(SimODE::getFront_R01());	R02.set(SimODE::getFront_R02());
-		R10.set(SimODE::getFront_R10());	R11.set(SimODE::getFront_R11());	R12.set(SimODE::getFront_R12());
-		R20.set(SimODE::getFront_R20());	R21.set(SimODE::getFront_R21());	R22.set(SimODE::getFront_R22());
-
-		MoveKeyCommand = "xform -matrix " + 
-									R00 + " " + R01 +" " + R02 +" 0 " +
-									R10 + " " + R11 +" " + R12 +" 0 " +
-									R20 + " " + R21 +" " + R22 +" 0 " +
-									Px  + " " + Py  +" " + Pz  +" 1 ;";
-		MoveKeyCommand = "select -r front_wheel;" + MoveKeyCommand;
-
-		MGlobal::executeCommand(MoveKeyCommand);
-		MGlobal::executeCommand("setKeyframe;");
-		*/
-		//Keyframe BackWheel_body2
+		//Set BackWheel Position.
 		MString BackWheelPosx;
 		BackWheelPosx.set(SimODE::GetBackWheelPos_Body2x());
 		MString BackWheelPosy;
